@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>FTI Semester 2 - Kenangan & Jadwal Kuliah</title>
+  <meta name="description" content="Website kenangan kelas dan jadwal kuliah Fakultas Teknologi Informasi Semester 2 dengan tampilan interaktif dan informatif.">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Open Graph tags -->
+  <meta property="og:title" content="FTI Semester 2 - Kenangan & Jadwal Kuliah">
+  <meta property="og:description" content="Website kenangan kelas dan jadwal kuliah Fakultas Teknologi Informasi Semester 2.">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <h2>Memuat Kenangan FTI Semester 2</h2>
+    <p>Menyiapkan momen-momen berharga...</p>
+  </div>
+
+  <!-- Particles Background -->
+  <div id="particles-js" class="particles-container"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="#home" class="logo">FTI Semester 2</a>
+      <button id="close-menu-btn" class="close-menu-btn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <nav class="mobile-nav">
+      <ul>
+        <li><a href="#home" class="menu-link">Beranda</a></li>
+        <li><a href="#about" class="menu-link">Tentang FTI</a></li>
+        <li><a href="#gallery" class="menu-link">Galeri Foto</a></li>
+        <li><a href="#schedule" class="menu-link">Jadwal Kuliah</a></li>
+        <li><a href="#organization" class="menu-link">Struktur Organisasi</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <button id="menu-toggle" class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Desktop Navigation -->
+  <header class="desktop-nav">
+    <div class="container">
+      <nav>
+        <a href="#home" class="logo">FTI Semester 2</a>
+        <ul>
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#about">Tentang FTI</a></li>
+          <li><a href="#gallery">Galeri Foto</a></li>
+          <li><a href="#schedule">Jadwal Kuliah</a></li>
+          <li><a href="#organization">Struktur Organisasi</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hidden-element">Fakultas Teknologi Informasi</h1>
+        <p class="hidden-element">Kenangan dan perjalanan mahasiswa Semester 2 dalam mengarungi dunia teknologi informasi.</p>
+        <div class="hero-buttons hidden-element">
+          <a href="#gallery" class="btn btn-primary">Galeri Foto</a>
+          <a href="#schedule" class="btn btn-light">Jadwal Kuliah</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="hidden-element">Tentang FTI Semester 2</h2>
+        <p class="hidden-element">Fakultas Teknologi Informasi (FTI) merupakan tempat bagi para mahasiswa untuk
+          mengembangkan keahlian di bidang teknologi informasi dengan dua program studi utama:
+          Sistem Informasi dan Informatika.</p>
+      </div>
+
+      <div class="about-content">
+        <div class="about-image hidden-element">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Suasana kelas teknologi">
+        </div>
+        <div class="about-text">
+          <div class="hidden-element">
+            <h3>Program Studi</h3>
+            <p>
+              FTI memiliki dua program studi unggulan yang mempersiapkan mahasiswa untuk menjadi
+              profesional TI yang kompeten dan berdaya saing di era digital.
+            </p>
+          </div>
+
+          <div class="hidden-element">
+            <h4 class="text-primary">Sistem Informasi</h4>
+            <p>
+              Fokus pada pengembangan sistem informasi yang mendukung proses bisnis, manajemen
+              data, dan integrasi teknologi dalam organisasi.
+            </p>
+          </div>
+
+          <div class="hidden-element">
+            <h4 class="text-secondary">Informatika</h4>
+            <p>
+              Menekankan pada pemrograman, algoritma, kecerdasan buatan, dan pengembangan software
+              untuk memecahkan berbagai permasalahan melalui teknologi.
+            </p>
+          </div>
+
+          <button id="learn-more-btn" class="btn btn-primary hidden-element">Pelajari Lebih Lanjut</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="hidden-element">Galeri Kenangan</h2>
+        <p class="hidden-element">Mengabadikan momen-momen berharga selama perjalanan menuntut ilmu di Fakultas Teknologi
+          Informasi Semester 2.</p>
+      </div>
+
+      <div class="gallery-grid hidden-element">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=350" alt="Mahasiswa berkolaborasi">
+          <div class="gallery-caption">
+            <p>Kolaborasi Proyek Kelompok</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://pixabay.com/get/ga5a7e8728b3648e80f970d3c529c432216ff0c306b8a29b0904b1f4b15b52156c437fcc0e6daedd12cd8879c42463faf4802989f5cbbb55a092eca0166a93778_1280.jpg" alt="Laboratorium komputer">
+          <div class="gallery-caption">
+            <p>Praktikum di Laboratorium</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://pixabay.com/get/g5f6f6570cc3a562b3279e62b00274e3fdddcbd7af3fe5686b193789a360ce1c353955aae5dd3fa0e75c00f53ca3b74d6841912fdb076599a776f52847f2b199b_1280.jpg" alt="Suasana kelas">
+          <div class="gallery-caption">
+            <p>Diskusi Materi Perkuliahan</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=350" alt="Area belajar mahasiswa">
+          <div class="gallery-caption">
+            <p>Belajar di Area Kampus</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1573164574230-db1d5e960238?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=350" alt="Workshop teknologi">
+          <div class="gallery-caption">
+            <p>Workshop Pengembangan Web</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=350" alt="Dosen dan mahasiswa">
+          <div class="gallery-caption">
+            <p>Bimbingan dengan Dosen</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=350" alt="Perayaan mahasiswa">
+          <div class="gallery-caption">
+            <p>Perayaan Keberhasilan Proyek</p>
+          </div>
+        </div>
+
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=350" alt="Fasilitas teknologi">
+          <div class="gallery-caption">
+            <p>Praktik Pemrograman</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center hidden-element">
+        <button id="view-more-btn" class="btn btn-primary">Lihat Lebih Banyak Foto</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Section -->
+  <section id="schedule" class="schedule">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="hidden-element">Jadwal Perkuliahan</h2>
+        <p class="hidden-element">Jadwal perkuliahan untuk program studi Sistem Informasi dan Informatika semester 2.</p>
+      </div>
+
+      <div class="schedule-tabs hidden-element">
+        <div class="schedule-tab active" data-tab="si-schedule">Sistem Informasi</div>
+        <div class="schedule-tab" data-tab="if-schedule">Informatika</div>
+      </div>
+
+      <div class="schedule-content active" id="si-schedule">
+        <div class="schedule-box hidden-element">
+          <h3 class="text-primary">Jadwal Kuliah Sistem Informasi - Semester 2</h3>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hari</th>
+                  <th>Waktu</th>
+                  <th>Mata Kuliah</th>
+                  <th>Dosen</th>
+                  <th>Ruangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Senin</td>
+                  <td>08:00 - 10:30</td>
+                  <td>Basis Data Lanjut</td>
+                  <td>Dr. Siti Nurhaliza</td>
+                  <td>Lab. Database 2</td>
+                </tr>
+                <tr>
+                  <td>Senin</td>
+                  <td>13:00 - 15:30</td>
+                  <td>Analisis Proses Bisnis</td>
+                  <td>Prof. Budi Santoso</td>
+                  <td>Ruang 301</td>
+                </tr>
+                <tr>
+                  <td>Selasa</td>
+                  <td>10:00 - 12:30</td>
+                  <td>Pemrograman Web</td>
+                  <td>Ir. Hadi Prasetyo</td>
+                  <td>Lab. Komputer 3</td>
+                </tr>
+                <tr>
+                  <td>Rabu</td>
+                  <td>08:00 - 10:30</td>
+                  <td>Sistem Informasi Manajemen</td>
+                  <td>Dr. Ratna Kusuma</td>
+                  <td>Ruang 201</td>
+                </tr>
+                <tr>
+                  <td>Kamis</td>
+                  <td>13:00 - 15:30</td>
+                  <td>Statistika Bisnis</td>
+                  <td>Dr. Ahmad Fauzi</td>
+                  <td>Ruang 305</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pj-box hidden-element">
+          <h3 class="text-primary">Penanggung Jawab Mata Kuliah (PJ MK) - Sistem Informasi</h3>
+
+          <div class="pj-grid">
+            <div class="pj-item">
+              <h4>Basis Data Lanjut</h4>
+              <p>PJ: Rini Sukmawati</p>
+              <p>Kontak: rini2023@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Analisis Proses Bisnis</h4>
+              <p>PJ: Dimas Ardianto</p>
+              <p>Kontak: dimas@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Pemrograman Web</h4>
+              <p>PJ: Anita Permatasari</p>
+              <p>Kontak: anita.p@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Sistem Informasi Manajemen</h4>
+              <p>PJ: Bagas Prasetyo</p>
+              <p>Kontak: bagas@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Statistika Bisnis</h4>
+              <p>PJ: Lina Fitriani</p>
+              <p>Kontak: lina.f@fti.ac.id</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-content" id="if-schedule">
+        <div class="schedule-box hidden-element">
+          <h3 class="text-secondary">Jadwal Kuliah Informatika - Semester 2</h3>
+
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hari</th>
+                  <th>Waktu</th>
+                  <th>Mata Kuliah</th>
+                  <th>Dosen</th>
+                  <th>Ruangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Senin</td>
+                  <td>08:00 - 10:30</td>
+                  <td>Algoritma dan Struktur Data</td>
+                  <td>Dr. Bambang Hermanto</td>
+                  <td>Lab. Programming 2</td>
+                </tr>
+                <tr>
+                  <td>Selasa</td>
+                  <td>10:00 - 12:30</td>
+                  <td>Pemrograman Berorientasi Objek</td>
+                  <td>Ir. Yudi Purnomo</td>
+                  <td>Lab. Komputer 1</td>
+                </tr>
+                <tr>
+                  <td>Rabu</td>
+                  <td>13:00 - 15:30</td>
+                  <td>Matematika Diskrit</td>
+                  <td>Prof. Lisa Widiastuti</td>
+                  <td>Ruang 202</td>
+                </tr>
+                <tr>
+                  <td>Kamis</td>
+                  <td>08:00 - 10:30</td>
+                  <td>Jaringan Komputer Dasar</td>
+                  <td>Dr. Eko Prasetyo</td>
+                  <td>Lab. Jaringan</td>
+                </tr>
+                <tr>
+                  <td>Jumat</td>
+                  <td>10:00 - 12:30</td>
+                  <td>Sistem Operasi</td>
+                  <td>Ir. Dewi Anggraini</td>
+                  <td>Lab. Komputer 2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pj-box hidden-element">
+          <h3 class="text-secondary">Penanggung Jawab Mata Kuliah (PJ MK) - Informatika</h3>
+
+          <div class="pj-grid">
+            <div class="pj-item">
+              <h4>Algoritma dan Struktur Data</h4>
+              <p>PJ: Adi Nugroho</p>
+              <p>Kontak: adi.n@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Pemrograman Berorientasi Objek</h4>
+              <p>PJ: Sinta Dewi</p>
+              <p>Kontak: sinta@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Matematika Diskrit</h4>
+              <p>PJ: Dani Pratama</p>
+              <p>Kontak: dani.p@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Jaringan Komputer Dasar</h4>
+              <p>PJ: Maya Indah</p>
+              <p>Kontak: maya@fti.ac.id</p>
+            </div>
+
+            <div class="pj-item">
+              <h4>Sistem Operasi</h4>
+              <p>PJ: Reza Firmansyah</p>
+              <p>Kontak: reza.f@fti.ac.id</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organization Section -->
+  <section id="organization" class="organization">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="hidden-element">Struktur Organisasi</h2>
+        <p class="hidden-element">Struktur koordinator mahasiswa (Kosma) dan penanggung jawab kelas untuk semester 2.</p>
+      </div>
+
+      <div class="org-chart hidden-element">
+        <div class="org-leader">
+          <div class="org-avatar">DK</div>
+          <h3>Dekan FTI</h3>
+          <p class="org-name">Farhan Akbar</p>
+          <p class="org-dept">Informatika</p>
+          <p class="org-contact">farhan.a@student.ac.id | 0812-3456-7890</p>
+        </div>
+
+        <div class="org-connector"></div>
+
+        <div class="org-heads">
+          <div class="org-head">
+            <div class="org-avatar bg-primary">SI</div>
+            <h3>Kosma Sistem Informasi</h3>
+            <p class="org-name">Dina Anggraini</p>
+            <p class="org-contact">dina.a@student.ac.id</p>
+          </div>
+
+          <div class="org-head">
+            <div class="org-avatar bg-secondary">IF</div>
+            <h3>Kosma Informatika</h3>
+            <p class="org-name">Bima Saputra</p>
+            <p class="org-contact">bima.s@student.ac.id</p>
+          </div>
+        </div>
+
+        <div class="org-connector"></div>
+
+        <div class="org-members">
+          <div class="org-member">
+            <h3>Sekretaris SI</h3>
+            <p class="org-name">Putri Handayani</p>
+          </div>
+
+          <div class="org-member">
+            <h3>Bendahara SI</h3>
+            <p class="org-name">Rendi Pratama</p>
+          </div>
+
+          <div class="org-member">
+            <h3>Sekretaris IF</h3>
+            <p class="org-name">Indah Lestari</p>
+          </div>
+
+          <div class="org-member">
+            <h3>Bendahara IF</h3>
+            <p class="org-name">Fajar Ramadhan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>FTI Semester 2</h3>
+          <p>
+            Fakultas Teknologi Informasi merupakan tempat berkembangnya mahasiswa di bidang
+            teknologi digital dan informasi.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h3>Tautan Cepat</h3>
+          <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang FTI</a></li>
+            <li><a href="#gallery">Galeri Foto</a></li>
+            <li><a href="#schedule">Jadwal Kuliah</a></li>
+            <li><a href="#organization">Struktur Organisasi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h3>Kontak</h3>
+          <ul>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Gedung FTI, Kampus Universitas, Jl. Pendidikan No. 123</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <span>info@fti-university.ac.id</span>
+            </li>
+            <li>
+              <i class="fas fa-phone-alt"></i>
+              <span>(021) 1234-5678</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Fakultas Teknologi Informasi. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Audio Player -->
+  <div class="audio-player">
+    <button id="audio-toggle" class="audio-toggle">
+      <i class="fas fa-play"></i>
+    </button>
+    <div class="audio-info">
+      <div class="audio-label">Background Music</div>
+      <div class="audio-title">Inspiring Ambient</div>
+    </div>
+  </div>
+
+  <!-- Popups -->
+  <div id="about-popup" class="popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Tentang Program Studi</h3>
+        <button class="popup-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="popup-body">
+        <div class="program-info">
+          <h4 class="text-primary">Sistem Informasi</h4>
+          <p>
+            Program Studi Sistem Informasi berfokus pada pengembangan kemampuan mahasiswa dalam merancang, mengimplementasikan, dan mengelola sistem informasi untuk mendukung operasional organisasi.
+          </p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Analisis dan Perancangan Sistem Informasi</li>
+            <li><i class="fas fa-check-circle"></i> Enterprise Resource Planning (ERP)</li>
+            <li><i class="fas fa-check-circle"></i> Business Intelligence dan Analitik Data</li>
+            <li><i class="fas fa-check-circle"></i> Manajemen Proyek Teknologi Informasi</li>
+          </ul>
+        </div>
+
+        <div class="program-info">
+          <h4 class="text-secondary">Informatika</h4>
+          <p>
+            Program Studi Informatika menekankan pada keterampilan teknis dalam pengembangan software, pemrograman, dan penerapan algoritma untuk menyelesaikan masalah komputasi.
+          </p>
+          <ul class="feature-list">
+            <li><i class="fas fa-check-circle"></i> Pengembangan Aplikasi dan Perangkat Lunak</li>
+            <li><i class="fas fa-check-circle"></i> Kecerdasan Buatan dan Machine Learning</li>
+            <li><i class="fas fa-check-circle"></i> Pengembangan Game dan Aplikasi Mobile</li>
+            <li><i class="fas fa-check-circle"></i> Keamanan Sistem dan Jaringan Komputer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="gallery-popup" class="popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h3>Galeri Foto FTI</h3>
+        <button class="popup-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="popup-body">
+        <div class="gallery-popup-grid">
+          <div class="gallery-popup-item">
+            <img src="https://images.unsplash.com/photo-1596496181848-3091d4878b24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Presentasi proyek kelas">
+          </div>
+          <div class="gallery-popup-item">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Mahasiswa sedang coding">
+          </div>
+          <div class="gallery-popup-item">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Sesi lab komputer">
+          </div>
+          <div class="gallery-popup-item">
+            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Sesi belajar kelompok">
+          </div>
+          <div class="gallery-popup-item">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Pameran teknologi">
+          </div>
+          <div class="gallery-popup-item">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Perayaan kelulusan">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JS -->
+  <script src="script.js"></script>
+</body>
+</html>
