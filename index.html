@@ -1,0 +1,2478 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FTI Semester 3 - Fakultas Teknologi Informasi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --primary-color: #4361ee;
+        --primary-light: #6a7fef;
+        --secondary-color: #3a0ca3;
+        --accent-color: #4cc9f0;
+        --accent-light: #7fd8f5;
+        --success-color: #38b000;
+        --warning-color: #ffaa00;
+        --danger-color: #ef233c;
+        --text-color: #2b2d42;
+        --text-light: #6c757d;
+        --light-bg: #f8f9fa;
+        --dark-bg: #121212;
+        --dark-light: #1e1e1e;
+        --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+        font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        color: var(--text-color);
+        line-height: 1.7;
+        background-color: var(--light-bg);
+        transition: var(--transition);
+        overflow-x: hidden;
+    }
+
+    .dark-mode {
+        background-color: var(--dark-bg);
+        color: #f8f9fa;
+    }
+
+    .dark-mode .navbar,
+    .dark-mode .footer,
+    .dark-mode .card {
+        background-color: var(--dark-light) !important;
+        color: #f8f9fa;
+    }
+
+    .dark-mode .card {
+        border-color: #333;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark-mode .stats-card {
+        background-color: #252525;
+    }
+
+    .dark-mode .stats-label {
+        color: #b0b0b0;
+    }
+
+    /* Premium Loading Screen */
+    .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.5s ease;
+    }
+
+    .preloader.fade-out {
+        opacity: 0;
+    }
+
+    .loader-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 30px;
+        animation: pulse 2s infinite;
+    }
+
+    .progress-container {
+        width: 300px;
+        max-width: 80%;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0;
+        background: white;
+        border-radius: 10px;
+        transition: width 0.3s ease;
+    }
+
+    .loading-text {
+        color: white;
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .loading-percentage {
+        color: white;
+        margin-top: 10px;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    /* Glassmorphism Effect */
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 12px;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+    }
+
+    .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .navbar {
+        background-color: var(--primary-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1rem 2rem;
+        backdrop-filter: blur(10px);
+        background-color: rgba(67, 97, 238, 0.9);
+        transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+        padding: 0.5rem 2rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.7rem;
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-brand img {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .nav-link {
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        border-radius: 8px;
+        transition: var(--transition);
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 6rem 0;
+        position: relative;
+        overflow: hidden;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.9;
+        max-width: 700px;
+    }
+
+    .btn {
+        padding: 0.8rem 2rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: var(--transition);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.9rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-primary {
+        background-color: var(--accent-color);
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+        background-color: #3ab8d8;
+        transform: translateY(-2px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .btn-outline-light {
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        background-color: transparent;
+        color: white;
+        margin-left: 1rem;
+    }
+
+    .btn-outline-light:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: white;
+    }
+
+    /* Floating Elements */
+    .floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        animation: float 6s ease-in-out infinite;
+        z-index: 0;
+    }
+
+    .shape-1 {
+        width: 150px;
+        height: 150px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 100px;
+        height: 100px;
+        bottom: 15%;
+        right: 10%;
+        animation-delay: 1s;
+    }
+
+    .shape-3 {
+        width: 80px;
+        height: 80px;
+        top: 60%;
+        left: 25%;
+        animation-delay: 2s;
+    }
+
+    /* Section Styling */
+    .section {
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section-title {
+        position: relative;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        font-size: 2.2rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        width: 70px;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        border-radius: 3px;
+    }
+
+    .section-title.center::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Card Styles */
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        overflow: hidden;
+        background-color: white;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    /* Quick Links */
+    .quick-links .card {
+        height: 100%;
+        border: none;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        background-color: white;
+        overflow: hidden;
+    }
+
+    .quick-links .card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .quick-links .card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .quick-links .card-body {
+        padding: 2rem;
+    }
+
+    /* Announcements */
+    .announcement-card {
+        border-left: 5px solid var(--primary-color);
+        transition: var(--transition);
+        border-radius: 8px;
+    }
+
+    .announcement-card:hover {
+        transform: translateX(8px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    /* Stats Cards */
+    .stats-card {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        padding: 2rem;
+        text-align: center;
+        transition: var(--transition);
+        border-top: 5px solid var(--primary-color);
+    }
+
+    .stats-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .stats-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .stats-label {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        font-weight: 500;
+    }
+
+    /* Profile Cards */
+    .profile-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        background-color: white;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .profile-img {
+        height: 250px;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .profile-card:hover .profile-img {
+        transform: scale(1.05);
+    }
+
+    .profile-social {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .profile-social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: var(--light-bg);
+        margin: 0 5px;
+        color: var(--text-color);
+        transition: var(--transition);
+    }
+
+    .profile-social a:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    /* Schedule Table */
+    .schedule-table {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+    }
+
+    .schedule-table:hover {
+        box-shadow: var(--hover-shadow);
+    }
+
+    .schedule-table th {
+        background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        font-weight: 600;
+        padding: 1rem;
+    }
+
+    .schedule-table td {
+        padding: 0.75rem;
+        vertical-align: middle;
+    }
+
+    .schedule-table tr:nth-child(even) {
+        background-color: rgba(67, 97, 238, 0.05);
+    }
+
+    /* Material Cards */
+    .material-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        background-color: white;
+    }
+
+    .material-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .material-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* Gallery */
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        height: 250px;
+        cursor: pointer;
+        box-shadow: var(--card-shadow);
+    }
+
+    .gallery-item img {
+        transition: var(--transition);
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.15);
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        color: white;
+        padding: 1.5rem;
+        transform: translateY(100%);
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+    }
+
+    /* Testimonial Cards */
+    .testimonial-card {
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        padding: 2rem;
+        background-color: white;
+        position: relative;
+    }
+
+    .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 5rem;
+        color: rgba(67, 97, 238, 0.1);
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .testimonial-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .rating {
+        color: #ffc107;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Blog Cards */
+    .blog-card {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        background-color: white;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--hover-shadow);
+    }
+
+    .blog-img {
+        height: 200px;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .blog-card:hover .blog-img {
+        transform: scale(1.1);
+    }
+
+    .blog-date {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* Tag Styles */
+    .tag {
+        display: inline-block;
+        background-color: #e0e0e0;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        transition: var(--transition);
+    }
+
+    .tag:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 5rem 0 2rem;
+        clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+        position: relative;
+    }
+
+    .footer a {
+        color: white;
+        text-decoration: none;
+        transition: var(--transition);
+        opacity: 0.8;
+    }
+
+    .footer a:hover {
+        text-decoration: none;
+        opacity: 1;
+        transform: translateX(5px);
+    }
+
+    .footer-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    .footer-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background-color: var(--accent-color);
+    }
+
+    /* Social Icons */
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.15);
+        margin-right: 10px;
+        transition: var(--transition);
+        font-size: 1.2rem;
+    }
+
+    .social-icon:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px) scale(1.1);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 999;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: none;
+    }
+
+    .back-to-top.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .lightbox.show {
+        display: flex;
+        opacity: 1;
+    }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+
+    .lightbox.show .lightbox-content {
+        transform: scale(1);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .lightbox-close:hover {
+        transform: rotate(90deg);
+    }
+
+    /* Animations */
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* New Animation Classes */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .fade-in.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .slide-in-left.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .slide-in-right.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .zoom-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .zoom-in.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .rotate-in {
+        opacity: 0;
+        transform: rotate(-10deg);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .rotate-in.show {
+        opacity: 1;
+        transform: rotate(0);
+    }
+
+    .flip-in {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(90deg);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .flip-in.show {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(0);
+    }
+
+    /* Section Animation Classes */
+    .section-animate {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    .section-animate.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Gradient Text */
+    .gradient-text {
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .profile-img, .gallery-item {
+            height: 200px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 4rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+        
+        .hero-title {
+            font-size: 2.2rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+        
+        .navbar-brand {
+            font-size: 1.3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .footer {
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+            padding: 4rem 0 2rem;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .btn-outline-light {
+            margin-left: 0;
+        }
+        
+        .floating-shape {
+            display: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 1.8rem;
+        }
+        
+        .section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+        }
+        
+        .navbar {
+            padding: 0.75rem 1rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Premium Preloader -->
+    <div class="preloader">
+        <svg class="loader-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="180" stroke-dashoffset="0">
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <text x="50" y="50" text-anchor="middle" dominant-baseline="middle" font-size="20" fill="#fff">FTI</text>
+        </svg>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="loading-text">Memuat Aplikasi...</div>
+        <div class="loading-percentage" id="loadingPercentage">0%</div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" src="" alt="">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">FTI Semester 3</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schedule">Jadwal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lecturers">Dosen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#materials">Materi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Galeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#forum">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title slide-in-left">Selamat Datang di FTI</h1>
+                    <p class="hero-subtitle slide-in-left" style="transition-delay: 0.2s">Fakultas Teknologi Informasi - Fakultas Teknologi Informasi</p>
+                    <div class="d-flex flex-wrap">
+                        <a href="#profile" class="btn btn-primary btn-lg me-3 mb-3 slide-in-left" style="transition-delay: 0.4s">Pelajari Lebih Lanjut</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg mb-3 slide-in-left" style="transition-delay: 0.6s">Hubungi Kami</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Image Carousel -->
+                    <div id="heroCarousel" class="carousel slide zoom-in" style="transition-delay: 0.8s" data-bs-ride="carousel">
+                        <div class="carousel-inner rounded-3 overflow-hidden">
+                            <div class="carousel-item active">
+                                <img src="https://unilam.ac.id/storage/1749020646.png" class="d-block w-100" alt="Kampus FTI" loading="lazy">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://source.unsplash.com/random/600x400/?coding,programming" class="d-block w-100" alt="Pembelajaran" loading="lazy">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://source.unsplash.com/random/600x400/?students,classroom" class="d-block w-100" alt="Kegiatan Mahasiswa" loading="lazy">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links & Announcements -->
+    <section id="quick-links" class="section py-5 bg-light section-animate">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <h2 class="section-title">Pengumuman Terkini</h2>
+                    <div class="announcement-container">
+                        <div class="card announcement-card mb-3 fade-in" style="transition-delay: 0.1s">
+                            <div class="card-body">
+                                <h5 class="card-title">Jadwal UTS Semester Ganjil 2023</h5>
+                                <p class="card-text">Jadwal Ujian Tengah Semester akan dilaksanakan pada tanggal 15-20 Oktober 2023.</p>
+                                <p class="card-text"><small class="text-muted">Diposting 2 hari yang lalu</small></p>
+                            </div>
+                        </div>
+                        <div class="card announcement-card mb-3 fade-in" style="transition-delay: 0.2s">
+                            <div class="card-body">
+                                <h5 class="card-title">Pendaftaran Workshop Web Development</h5>
+                                <p class="card-text">Daftarkan diri Anda untuk workshop praktis pengembangan web modern.</p>
+                                <p class="card-text"><small class="text-muted">Diposting 5 hari yang lalu</small></p>
+                            </div>
+                        </div>
+                        <div class="card announcement-card mb-3 fade-in" style="transition-delay: 0.3s">
+                            <div class="card-body">
+                                <h5 class="card-title">Libur Nasional - Hari Kemerdekaan</h5>
+                                <p class="card-text">Perkuliahan diliburkan pada tanggal 17 Agustus 2023.</p>
+                                <p class="card-text"><small class="text-muted">Diposting 1 minggu yang lalu</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="section-title">Quick Links</h2>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <a href="#schedule" class="card text-center p-3 h-100 quick-link-card flip-in" style="transition-delay: 0.1s">
+                                <i class="fas fa-calendar-alt"></i>
+                                <h5>Jadwal Kuliah</h5>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#lecturers" class="card text-center p-3 h-100 quick-link-card flip-in" style="transition-delay: 0.2s">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <h5>Daftar Dosen</h5>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#materials" class="card text-center p-3 h-100 quick-link-card flip-in" style="transition-delay: 0.3s">
+                                <i class="fas fa-book"></i>
+                                <h5>Materi Perkuliahan</h5>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="#" class="card text-center p-3 h-100 quick-link-card flip-in" style="transition-delay: 0.4s">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h5>Portal Akademik</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title text-center mb-4">Statistik FTI Semester 3</h2>
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card rotate-in" style="transition-delay: 0.1s">
+                        <div class="stats-number">120</div>
+                        <div class="stats-label">Mahasiswa</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card rotate-in" style="transition-delay: 0.2s">
+                        <div class="stats-number">8</div>
+                        <div class="stats-label">Mata Kuliah</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card rotate-in" style="transition-delay: 0.3s">
+                        <div class="stats-number">12</div>
+                        <div class="stats-label">Dosen</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="stats-card rotate-in" style="transition-delay: 0.4s">
+                        <div class="stats-number">24</div>
+                        <div class="stats-label">SKS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="section py-5 section-animate">
+        <div class="container">
+            <h2 class="section-title">Profil Semester 3</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.1s">
+                        <div class="card-body">
+                            <h3 class="card-title">Visi & Misi</h3>
+                            <h5>Visi:</h5>
+                            <p>Menjadi angkatan yang unggul dalam bidang teknologi informasi, berkarakter, dan mampu bersaing di era digital.</p>
+                            <h5>Misi:</h5>
+                            <ul>
+                                <li>Meningkatkan kompetensi akademik dan keterampilan teknis di bidang TI</li>
+                                <li>Mengembangkan soft skills melalui kegiatan kemahasiswaan</li>
+                                <li>Membangun jaringan profesional dengan alumni dan industri</li>
+                                <li>Berkontribusi positif bagi masyarakat melalui penerapan teknologi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.2s">
+                        <div class="card-body">
+                            <h3 class="card-title">Struktur Organisasi</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Ketua Angkatan</th>
+                                            <td>Andi Wijaya</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Wakil Ketua</th>
+                                            <td>Budi Santoso</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Sekretaris</th>
+                                            <td>Citra Dewi</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Bendahara</th>
+                                            <td>Dian Pratama</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Koordinator Akademik</th>
+                                            <td>Eka Putri</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Koordinator Kegiatan</th>
+                                            <td>Fajar Nugroho</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Mata Kuliah Semester 3</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.1s">
+                        <div class="card-body">
+                            <h5 class="card-title">Pemrograman Web</h5>
+                            <p class="card-text">Mempelajari pengembangan website modern dengan HTML, CSS, JavaScript dan framework terkini.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.2s">
+                        <div class="card-body">
+                            <h5 class="card-title">Basis Data</h5>
+                            <p class="card-text">Konsep dasar basis data, SQL, normalisasi, dan implementasi sistem basis data relasional.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.3s">
+                        <div class="card-body">
+                            <h5 class="card-title">Jaringan Komputer</h5>
+                            <p class="card-text">Dasar-dasar jaringan komputer, protokol, arsitektur, dan implementasi jaringan.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.4s">
+                        <div class="card-body">
+                            <h5 class="card-title">Struktur Data</h5>
+                            <p class="card-text">Studi tentang struktur data dasar seperti array, linked list, stack, queue, tree, dan graph.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.5s">
+                        <div class="card-body">
+                            <h5 class="card-title">Algoritma & Pemrograman</h5>
+                            <p class="card-text">Pengembangan algoritma dan implementasinya dalam bahasa pemrograman.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.6s">
+                        <div class="card-body">
+                            <h5 class="card-title">Sistem Operasi</h5>
+                            <p class="card-text">Konsep dasar sistem operasi, manajemen proses, memori, file system, dan keamanan.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.7s">
+                        <div class="card-body">
+                            <h5 class="card-title">Matematika Diskrit</h5>
+                            <p class="card-text">Logika matematika, teori himpunan, relasi, fungsi, dan struktur diskrit lainnya.</p>
+                            <span class="badge bg-primary">3 SKS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.8s">
+                        <div class="card-body">
+                            <h5 class="card-title">Kewarganegaraan</h5>
+                            <p class="card-text">Pendidikan kewarganegaraan dan pembangunan karakter bangsa.</p>
+                            <span class="badge bg-primary">2 SKS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section py-5 bg-light section-animate">
+        <div class="container">
+            <h2 class="section-title">Jadwal Kelas</h2>
+            
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group mb-3 fade-in" style="transition-delay: 0.1s">
+                        <span class="input-group-text"><i class="fas fa-filter"></i></span>
+                        <select id="dayFilter" class="form-select">
+                            <option value="">Semua Hari</option>
+                            <option value="Senin">Senin</option>
+                            <option value="Selasa">Selasa</option>
+                            <option value="Rabu">Rabu</option>
+                            <option value="Kamis">Kamis</option>
+                            <option value="Jumat">Jumat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3 fade-in" style="transition-delay: 0.2s">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" id="courseSearch" class="form-control" placeholder="Cari mata kuliah...">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-responsive fade-in" style="transition-delay: 0.3s">
+                <table class="table table-bordered schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Jam</th>
+                            <th>Mata Kuliah</th>
+                            <th>Ruangan</th>
+                            <th>Dosen</th>
+                            <th>SKS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Senin</td>
+                            <td>08:00 - 10:30</td>
+                            <td>Pemrograman Web</td>
+                            <td>Lab. Komputer 1</td>
+                            <td>Dr. Ahmad Fauzi, M.Kom.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Senin</td>
+                            <td>13:00 - 15:30</td>
+                            <td>Basis Data</td>
+                            <td>Ruang 302</td>
+                            <td>Prof. Budi Santoso, Ph.D.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>08:00 - 10:30</td>
+                            <td>Jaringan Komputer</td>
+                            <td>Lab. Jaringan</td>
+                            <td>Ir. Cipto Wibowo, M.T.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>10:30 - 13:00</td>
+                            <td>Struktur Data</td>
+                            <td>Ruang 305</td>
+                            <td>Dian Purnama, M.Kom.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td>08:00 - 10:30</td>
+                            <td>Algoritma & Pemrograman</td>
+                            <td>Lab. Komputer 2</td>
+                            <td>Eka Putri, M.Kom.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td>13:00 - 15:30</td>
+                            <td>Sistem Operasi</td>
+                            <td>Ruang 301</td>
+                            <td>Fajar Nugroho, M.T.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Kamis</td>
+                            <td>10:30 - 13:00</td>
+                            <td>Matematika Diskrit</td>
+                            <td>Ruang 303</td>
+                            <td>Dr. Gita Wulandari, M.Si.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Jumat</td>
+                            <td>08:00 - 09:40</td>
+                            <td>Kewarganegaraan</td>
+                            <td>Ruang 304</td>
+                            <td>Hadi Prasetyo, M.Pd.</td>
+                            <td>2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="text-end mt-3 fade-in" style="transition-delay: 0.4s">
+                <button class="btn btn-primary me-2" id="exportPDF">
+                    <i class="fas fa-file-pdf me-2"></i>Export PDF
+                </button>
+                <button class="btn btn-success" id="exportExcel">
+                    <i class="fas fa-file-excel me-2"></i>Export Excel
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lecturers Section -->
+    <section id="lecturers" class="section py-5 section-animate">
+        <div class="container">
+            <h2 class="section-title">Dosen & Asisten</h2>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.1s">
+                        <img src="https://unilam.ac.id/storage/1749020646.png" class="card-img-top profile-img" alt="Dr. Ahmad Fauzi" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Ahmad Fauzi, M.Kom.</h5>
+                            <p class="card-text"><strong>Mata Kuliah:</strong> Pemrograman Web</p>
+                            <p class="card-text"><strong>Kontak:</strong> ahmad.fauzi@fti.edu</p>
+                            <p class="card-text"><strong>Jam Konsultasi:</strong> Senin, 16:00-18:00</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.2s">
+                        <img src="https://source.unsplash.com/random/300x300/?portrait,professor" class="card-img-top profile-img" alt="Prof. Budi Santoso" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. Budi Santoso, Ph.D.</h5>
+                            <p class="card-text"><strong>Mata Kuliah:</strong> Basis Data</p>
+                            <p class="card-text"><strong>Kontak:</strong> budi.santoso@fti.edu</p>
+                            <p class="card-text"><strong>Jam Konsultasi:</strong> Rabu, 10:00-12:00</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.3s">
+                        <img src="https://source.unsplash.com/random/300x300/?portrait,asian" class="card-img-top profile-img" alt="Ir. Cipto Wibowo" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Ir. Cipto Wibowo, M.T.</h5>
+                            <p class="card-text"><strong>Mata Kuliah:</strong> Jaringan Komputer</p>
+                            <p class="card-text"><strong>Kontak:</strong> cipto.wibowo@fti.edu</p>
+                            <p class="card-text"><strong>Jam Konsultasi:</strong> Kamis, 13:00-15:00</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.4s">
+                        <img src="https://source.unsplash.com/random/300x300/?portrait,woman" class="card-img-top profile-img" alt="Dian Purnama" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Dian Purnama, M.Kom.</h5>
+                            <p class="card-text"><strong>Mata Kuliah:</strong> Struktur Data</p>
+                            <p class="card-text"><strong>Kontak:</strong> dian.purnama@fti.edu</p>
+                            <p class="card-text"><strong>Jam Konsultasi:</strong> Selasa, 15:00-17:00</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.5s">
+                        <img src="https://source.unsplash.com/random/300x300/?portrait,lady" class="card-img-top profile-img" alt="Eka Putri" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Eka Putri, M.Kom.</h5>
+                            <p class="card-text"><strong>Mata Kuliah:</strong> Algoritma & Pemrograman</p>
+                            <p class="card-text"><strong>Kontak:</strong> eka.putri@fti.edu</p>
+                            <p class="card-text"><strong>Jam Konsultasi:</strong> Jumat, 10:00-12:00</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.6s">
+                        <img src="https://source.unsplash.com/random/300x300/?portrait,man,teacher" class="card-img-top profile-img" alt="Fajar Nugroho" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Fajar Nugroho, M.T.</h5>
+                            <p class="card-text"><strong>Mata Kuliah:</strong> Sistem Operasi</p>
+                            <p class="card-text"><strong>Kontak:</strong> fajar.nugroho@fti.edu</p>
+                            <p class="card-text"><strong>Jam Konsultasi:</strong> Senin, 10:00-12:00</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-google-scholar"></i></a>
+                                <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="mt-5 mb-4">Asisten Dosen</h3>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.1s">
+                        <img src="https://source.unsplash.com/random/300x300/?student,man" class="card-img-top profile-img" alt="Andi Wijaya" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Andi Wijaya</h5>
+                            <p class="card-text"><strong>Asisten:</strong> Pemrograman Web</p>
+                            <p class="card-text"><strong>Kontak:</strong> andi.wijaya@student.fti.edu</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.2s">
+                        <img src="https://source.unsplash.com/random/300x300/?student,woman" class="card-img-top profile-img" alt="Budi Santoso" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Budi Santoso</h5>
+                            <p class="card-text"><strong>Asisten:</strong> Basis Data</p>
+                            <p class="card-text"><strong>Kontak:</strong> budi.santoso@student.fti.edu</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.3s">
+                        <img src="https://source.unsplash.com/random/300x300/?student,asian" class="card-img-top profile-img" alt="Citra Dewi" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Citra Dewi</h5>
+                            <p class="card-text"><strong>Asisten:</strong> Jaringan Komputer</p>
+                            <p class="card-text"><strong>Kontak:</strong> citra.dewi@student.fti.edu</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="profile-card fade-in" style="transition-delay: 0.4s">
+                        <img src="https://source.unsplash.com/random/300x300/?student,indian" class="card-img-top profile-img" alt="Dian Pratama" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title">Dian Pratama</h5>
+                            <p class="card-text"><strong>Asisten:</strong> Struktur Data</p>
+                            <p class="card-text"><strong>Kontak:</strong> dian.pratama@student.fti.edu</p>
+                            <div class="d-flex mt-3">
+                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="social-icon"><i class="fab fa-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials & Assignments Section -->
+    <section id="materials" class="section py-5 bg-light section-animate">
+        <div class="container">
+            <h2 class="section-title">Materi & Tugas</h2>
+            
+            <ul class="nav nav-tabs mb-4 fade-in" style="transition-delay: 0.1s" id="courseTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="web-tab" data-bs-toggle="tab" data-bs-target="#web" type="button">Pemrograman Web</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="database-tab" data-bs-toggle="tab" data-bs-target="#database" type="button">Basis Data</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="network-tab" data-bs-toggle="tab" data-bs-target="#network" type="button">Jaringan Komputer</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="structure-tab" data-bs-toggle="tab" data-bs-target="#structure" type="button">Struktur Data</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="courseTabContent">
+                <div class="tab-pane fade show active" id="web" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.1s">
+                                <div class="card-body">
+                                    <h5 class="card-title">HTML & CSS Dasar</h5>
+                                    <p class="card-text">Materi pengenalan HTML5 dan CSS3 untuk membangun struktur dan tampilan website.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 10 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.2s">
+                                <div class="card-body">
+                                    <h5 class="card-title">JavaScript Modern</h5>
+                                    <p class="card-text">Pengenalan JavaScript ES6+ untuk membuat website interaktif.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 17 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.3s">
+                                <div class="card-body">
+                                    <h5 class="card-title">Framework CSS: Bootstrap 5</h5>
+                                    <p class="card-text">Panduan menggunakan Bootstrap 5 untuk membangun website responsif dengan cepat.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 24 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.4s">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tugas 1: Membuat Website Portofolio</h5>
+                                    <p class="card-text">Buat website portofolio pribadi menggunakan HTML, CSS, dan JavaScript.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Deadline: 30 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-info-circle"></i> Detail</a>
+                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-upload"></i> Upload</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="database" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.1s">
+                                <div class="card-body">
+                                    <h5 class="card-title">Konsep Dasar Basis Data</h5>
+                                    <p class="card-text">Pengenalan sistem basis data relasional dan konsep dasar DBMS.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 11 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.2s">
+                                <div class="card-body">
+                                    <h5 class="card-title">SQL Dasar</h5>
+                                    <p class="card-text">Panduan penggunaan SQL untuk operasi CRUD pada basis data.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 18 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="network" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.1s">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pengantar Jaringan Komputer</h5>
+                                    <p class="card-text">Konsep dasar jaringan komputer, model OSI dan TCP/IP.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 12 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="structure" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.1s">
+                                <div class="card-body">
+                                    <h5 class="card-title">Array dan Linked List</h5>
+                                    <p class="card-text">Implementasi struktur data array dan linked list dalam pemrograman.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 13 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="material-card card h-100 fade-in" style="transition-delay: 0.2s">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stack dan Queue</h5>
+                                    <p class="card-text">Konsep dan implementasi stack dan queue dalam pemrograman.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">Diunggah: 20 Sep 2023</small>
+                                        <div>
+                                            <a href="#" class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-eye"></i> Preview</a>
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-download"></i> Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section py-5 section-animate">
+        <div class="container">
+            <h2 class="section-title">Galeri Kegiatan</h2>
+            
+            <div class="row mb-4">
+                <div class="col">
+                    <ul class="nav nav-pills justify-content-center fade-in" style="transition-delay: 0.1s">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" data-filter="all">Semua</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="class">Kelas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="lab">Praktikum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="event">Acara</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-filter="other">Lainnya</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row g-3 gallery-container">
+                <div class="col-md-4 col-sm-6 gallery-item fade-in" data-category="class" style="transition-delay: 0.1s">
+                    <img src="https://source.unsplash.com/random/600x400/?classroom,university" alt="Kelas Pemrograman Web" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5>Kelas Pemrograman Web</h5>
+                        <p>15 Sep 2023</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 gallery-item fade-in" data-category="lab" style="transition-delay: 0.2s">
+                    <img src="https://source.unsplash.com/random/600x400/?computer,lab" alt="Praktikum Jaringan" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5>Praktikum Jaringan</h5>
+                        <p>16 Sep 2023</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 gallery-item fade-in" data-category="event" style="transition-delay: 0.3s">
+                    <img src="https://source.unsplash.com/random/600x400/?seminar,technology" alt="Seminar Teknologi" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5>Seminar Teknologi</h5>
+                        <p>18 Sep 2023</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 gallery-item fade-in" data-category="class" style="transition-delay: 0.4s">
+                    <img src="https://source.unsplash.com/random/600x400/?lecture,students" alt="Kelas Basis Data" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5>Kelas Basis Data</h5>
+                        <p>19 Sep 2023</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 gallery-item fade-in" data-category="event" style="transition-delay: 0.5s">
+                    <img src="https://source.unsplash.com/random/600x400/?workshop,programming" alt="Workshop Web Dev" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5>Workshop Web Dev</h5>
+                        <p>20 Sep 2023</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 gallery-item fade-in" data-category="other" style="transition-delay: 0.6s">
+                    <img src="https://source.unsplash.com/random/600x400/?group,students" alt="Kegiatan Angkatan" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h5>Kegiatan Angkatan</h5>
+                        <p>22 Sep 2023</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4 fade-in" style="transition-delay: 0.7s">
+                <button class="btn btn-primary">Lihat Lebih Banyak</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forum Section -->
+    <section id="forum" class="section py-5 bg-light section-animate">
+        <div class="container">
+            <h2 class="section-title">Forum Diskusi</h2>
+            
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <h3 class="mb-4">Kesan & Pesan Mahasiswa</h3>
+                    
+                    <div class="card mb-4 testimonial-card fade-in" style="transition-delay: 0.1s">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title">Andi Wijaya</h5>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <p class="card-text">"Pembelajaran di FTI sangat menyenangkan, dosen-dosennya ramah dan materi yang diajarkan relevan dengan kebutuhan industri. Fasilitas lab juga cukup lengkap untuk mendukung praktikum."</p>
+                            <p class="card-text"><small class="text-muted">Diposting 2 hari yang lalu</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4 testimonial-card fade-in" style="transition-delay: 0.2s">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title">Budi Santoso</h5>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="card-text">"Saya sangat menikmati perkuliahan di semester ini, terutama mata kuliah Pemrograman Web. Namun, saya berharap waktu praktikum bisa lebih fleksibel."</p>
+                            <p class="card-text"><small class="text-muted">Diposting 5 hari yang lalu</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4 testimonial-card fade-in" style="transition-delay: 0.3s">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <h5 class="card-title">Citra Dewi</h5>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p class="card-text">"FTI memberikan pengalaman belajar yang luar biasa! Dosen-dosennya kompeten dan selalu siap membantu. Saya sangat merekomendasikan FTI untuk calon mahasiswa yang tertarik di bidang TI."</p>
+                            <p class="card-text"><small class="text-muted">Diposting 1 minggu yang lalu</small></p>
+                        </div>
+                    </div>
+                    
+                    <h4 class="mt-5 mb-4">Tinggalkan Kesan & Pesan Anda</h4>
+                    <form id="testimonialForm" class="fade-in" style="transition-delay: 0.4s">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <select class="form-select" id="rating" required>
+                                <option value="">Pilih rating</option>
+                                <option value="5">Sangat Baik (5 bintang)</option>
+                                <option value="4">Baik (4 bintang)</option>
+                                <option value="3">Cukup (3 bintang)</option>
+                                <option value="2">Kurang (2 bintang)</option>
+                                <option value="1">Sangat Kurang (1 bintang)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Pesan</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </form>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h3 class="mb-4">Testimoni Dosen</h3>
+                    
+                    <div class="card mb-4 fade-in" style="transition-delay: 0.1s">
+                        <div class="card-body">
+                            <h5 class="card-title">Dr. Ahmad Fauzi, M.Kom.</h5>
+                            <p class="card-text">"Mahasiswa FTI Semester 3 sangat antusias dalam belajar, terutama dalam mata kuliah Pemrograman Web. Saya bangga dengan perkembangan mereka dalam menguasai teknologi web modern."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-4 fade-in" style="transition-delay: 0.2s">
+                        <div class="card-body">
+                            <h5 class="card-title">Prof. Budi Santoso, Ph.D.</h5>
+                            <p class="card-text">"Semangat belajar mahasiswa semester ini sangat tinggi. Mereka tidak hanya menguasai teori tetapi juga mampu menerapkannya dalam proyek-proyek praktis."</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card fade-in" style="transition-delay: 0.3s">
+                        <div class="card-body">
+                            <h5 class="card-title">Dian Purnama, M.Kom.</h5>
+                            <p class="card-text">"Saya melihat potensi besar pada angkatan ini. Kreativitas dan kemampuan problem solving mereka sangat baik, terutama dalam menyelesaikan masalah struktur data yang kompleks."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section py-5 section-animate">
+        <div class="container">
+            <h2 class="section-title">Blog Teknologi</h2>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card card h-100 fade-in" style="transition-delay: 0.1s">
+                        <img src="https://source.unsplash.com/random/600x400/?ai,technology" class="card-img-top blog-img" alt="AI Revolution" loading="lazy">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-primary me-2">AI</span>
+                                <span class="badge bg-secondary">Teknologi</span>
+                            </div>
+                            <h5 class="card-title">Revolusi AI dalam Pengembangan Software</h5>
+                            <p class="card-text">Bagaimana kecerdasan buatan mengubah cara kita mengembangkan perangkat lunak di era modern.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">15 Sep 2023</small>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card card h-100 fade-in" style="transition-delay: 0.2s">
+                        <img src="https://source.unsplash.com/random/600x400/?cybersecurity" class="card-img-top blog-img" alt="Cybersecurity" loading="lazy">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-danger me-2">Keamanan</span>
+                                <span class="badge bg-secondary">Jaringan</span>
+                            </div>
+                            <h5 class="card-title">Trend Keamanan Siber di Tahun 2023</h5>
+                            <p class="card-text">Ancaman keamanan siber terbaru dan bagaimana melindungi sistem Anda dari serangan digital.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">10 Sep 2023</small>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card card h-100 fade-in" style="transition-delay: 0.3s">
+                        <img src="https://source.unsplash.com/random/600x400/?web,development" class="card-img-top blog-img" alt="Web Development" loading="lazy">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-success me-2">Web</span>
+                                <span class="badge bg-secondary">Frontend</span>
+                            </div>
+                            <h5 class="card-title">Framework JavaScript Terbaik untuk 2023</h5>
+                            <p class="card-text">Perbandingan framework JavaScript populer dan mana yang paling sesuai untuk proyek Anda.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">5 Sep 2023</small>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card card h-100 fade-in" style="transition-delay: 0.4s">
+                        <img src="https://source.unsplash.com/random/600x400/?database" class="card-img-top blog-img" alt="Database" loading="lazy">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-info me-2">Basis Data</span>
+                                <span class="badge bg-secondary">Backend</span>
+                            </div>
+                            <h5 class="card-title">Optimasi Query Database untuk Performa Aplikasi</h5>
+                            <p class="card-text">Teknik-teknik canggih untuk meningkatkan kecepatan query database Anda.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">1 Sep 2023</small>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card card h-100 fade-in" style="transition-delay: 0.5s">
+                        <img src="https://source.unsplash.com/random/600x400/?cloud,computing" class="card-img-top blog-img" alt="Cloud Computing" loading="lazy">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-warning me-2">Cloud</span>
+                                <span class="badge bg-secondary">Infrastruktur</span>
+                            </div>
+                            <h5 class="card-title">Migrasi ke Cloud: Panduan untuk Pemula</h5>
+                            <p class="card-text">Langkah-langkah praktis untuk memindahkan aplikasi Anda ke lingkungan cloud.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">28 Agu 2023</small>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="blog-card card h-100 fade-in" style="transition-delay: 0.6s">
+                        <img src="https://source.unsplash.com/random/600x400/?programming,coding" class="card-img-top blog-img" alt="Programming" loading="lazy">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-dark me-2">Pemrograman</span>
+                                <span class="badge bg-secondary">Karir</span>
+                            </div>
+                            <h5 class="card-title">Skill yang Harus Dikuasai Developer di 2023</h5>
+                            <p class="card-text">Keterampilan teknis dan non-teknis yang paling dicari di industri teknologi saat ini.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">20 Agu 2023</small>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4 fade-in" style="transition-delay: 0.7s">
+                <button class="btn btn-primary">Lihat Artikel Lainnya</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section py-5 bg-light section-animate">
+        <div class="container">
+            <h2 class="section-title">Kontak & Sosial Media</h2>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.1s">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Hubungi Kami</h3>
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="contactName" class="form-label">Nama</label>
+                                    <input type="text" class="form-control" id="contactName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contactEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="contactEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contactSubject" class="form-label">Subjek</label>
+                                    <input type="text" class="form-control" id="contactSubject" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="contactMessage" class="form-label">Pesan</label>
+                                    <textarea class="form-control" id="contactMessage" rows="5" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 fade-in" style="transition-delay: 0.2s">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Lokasi Kampus</h3>
+                            <div class="ratio ratio-16x9 mb-4">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.800350483343!2d107.61872931431749!3d-6.903980769370448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e64a1e8a2a3d%3A0x3b32d311d7d47b0e!2sUniversitas%20Teknologi%20Digital!5e0!3m2!1sen!2sid!4v1621234567890!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                            <div class="contact-info">
+                                <p><i class="fas fa-map-marker-alt me-2"></i> Jl. Teknologi No. 123, Bandung, Jawa Barat</p>
+                                <p><i class="fas fa-phone me-2"></i> (022) 1234567</p>
+                                <p><i class="fas fa-envelope me-2"></i> info@fti.edu</p>
+                                <p><i class="fas fa-clock me-2"></i> Senin-Jumat: 08:00 - 16:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="mt-5 mb-4">Sosial Media</h3>
+            <div class="row text-center">
+                <div class="col-md-2 col-4 mb-3">
+                    <a href="#" class="social-icon d-block mx-auto fade-in" style="transition-delay: 0.1s">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <small>Facebook</small>
+                </div>
+                <div class="col-md-2 col-4 mb-3">
+                    <a href="#" class="social-icon d-block mx-auto fade-in" style="transition-delay: 0.2s">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <small>Instagram</small>
+                </div>
+                <div class="col-md-2 col-4 mb-3">
+                    <a href="#" class="social-icon d-block mx-auto fade-in" style="transition-delay: 0.3s">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <small>Twitter</small>
+                </div>
+                <div class="col-md-2 col-4 mb-3">
+                    <a href="#" class="social-icon d-block mx-auto fade-in" style="transition-delay: 0.4s">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <small>YouTube</small>
+                </div>
+                <div class="col-md-2 col-4 mb-3">
+                    <a href="#" class="social-icon d-block mx-auto fade-in" style="transition-delay: 0.5s">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <small>LinkedIn</small>
+                </div>
+                <div class="col-md-2 col-4 mb-3">
+                    <a href="#" class="social-icon d-block mx-auto fade-in" style="transition-delay: 0.6s">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <small>WhatsApp</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Tentang FTI</h5>
+                    <p>Fakultas Teknologi Informasi merupakan bagian dari Universitas Teknologi Digital yang berkomitmen untuk menghasilkan lulusan yang kompeten di bidang teknologi informasi.</p>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Menu Cepat</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#profile">Profil</a></li>
+                        <li><a href="#schedule">Jadwal</a></li>
+                        <li><a href="#materials">Materi</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Mata Kuliah</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Pemrograman Web</a></li>
+                        <li><a href="#">Basis Data</a></li>
+                        <li><a href="#">Jaringan Komputer</a></li>
+                        <li><a href="#">Struktur Data</a></li>
+                        <li><a href="#">Sistem Operasi</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Berlangganan newsletter kami untuk mendapatkan informasi terbaru.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email Anda">
+                            <button class="btn btn-primary" type="submit">OK</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 FTI - Fakultas Teknologi Informasi. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Kebijakan Privasi</a>
+                    <a href="#" class="text-white me-3">Syarat & Ketentuan</a>
+                    <a href="#" class="text-white">Peta Situs</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Premium Loading Screen
+        document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.querySelector('.preloader');
+            const progressBar = document.getElementById('progressBar');
+            const loadingPercentage = document.getElementById('loadingPercentage');
+            
+            let progress = 0;
+            const interval = setInterval(function() {
+                progress += Math.random() * 10;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = progress + '%';
+                loadingPercentage.textContent = Math.floor(progress) + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(function() {
+                        preloader.classList.add('fade-out');
+                        setTimeout(function() {
+                            preloader.style.display = 'none';
+                            
+                            // Initialize animations after loading
+                            initAnimations();
+                        }, 500);
+                    }, 500);
+                }
+            }, 100);
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Back to top button
+            const backToTopButton = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Schedule filtering
+            const dayFilter = document.getElementById('dayFilter');
+            const courseSearch = document.getElementById('courseSearch');
+            const scheduleRows = document.querySelectorAll('.schedule-table tbody tr');
+            
+            function filterSchedule() {
+                const dayValue = dayFilter.value.toLowerCase();
+                const searchValue = courseSearch.value.toLowerCase();
+                
+                scheduleRows.forEach(row => {
+                    const day = row.cells[0].textContent.toLowerCase();
+                    const course = row.cells[2].textContent.toLowerCase();
+                    
+                    const dayMatch = dayValue === '' || day.includes(dayValue);
+                    const searchMatch = searchValue === '' || course.includes(searchValue);
+                    
+                    if (dayMatch && searchMatch) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+            
+            dayFilter.addEventListener('change', filterSchedule);
+            courseSearch.addEventListener('input', filterSchedule);
+            
+            // Export buttons
+            document.getElementById('exportPDF').addEventListener('click', function() {
+                alert('Fitur ekspor ke PDF akan segera tersedia!');
+            });
+            
+            document.getElementById('exportExcel').addEventListener('click', function() {
+                alert('Fitur ekspor ke Excel akan segera tersedia!');
+            });
+            
+            // Gallery filter
+            const galleryFilters = document.querySelectorAll('[data-filter]');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            galleryFilters.forEach(filter => {
+                filter.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Update active filter
+                    galleryFilters.forEach(f => f.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox for gallery
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-content');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const galleryImages = document.querySelectorAll('.gallery-item img');
+            
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.classList.add('show');
+                    lightboxImg.src = this.src;
+                });
+            });
+            
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('show');
+            });
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('show');
+                }
+            });
+            
+            // Form submissions
+            document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Terima kasih atas testimoni Anda! Pesan Anda telah berhasil dikirim.');
+                this.reset();
+            });
+            
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Pesan Anda telah berhasil dikirim. Kami akan segera menghubungi Anda.');
+                this.reset();
+            });
+            
+            // Initialize animations
+            function initAnimations() {
+                // Add animation classes to hero section elements
+                document.querySelector('.hero-title').classList.add('show');
+                document.querySelector('.hero-subtitle').classList.add('show');
+                document.querySelectorAll('.hero-section .btn').forEach((btn, index) => {
+                    setTimeout(() => {
+                        btn.classList.add('show');
+                    }, 200 * (index + 1));
+                });
+                document.querySelector('#heroCarousel').classList.add('show');
+                
+                // Set up intersection observer for scroll animations
+                const animateOnScroll = (elements, animationClass) => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('show');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: 0.1
+                    });
+                    
+                    elements.forEach(element => {
+                        observer.observe(element);
+                    });
+                };
+                
+                // Animate sections
+                const sections = document.querySelectorAll('.section-animate');
+                animateOnScroll(sections, 'show');
+                
+                // Animate individual elements with fade-in class
+                const fadeElements = document.querySelectorAll('.fade-in');
+                animateOnScroll(fadeElements, 'show');
+                
+                // Animate slide-in-left elements
+                const slideLeftElements = document.querySelectorAll('.slide-in-left');
+                animateOnScroll(slideLeftElements, 'show');
+                
+                // Animate slide-in-right elements
+                const slideRightElements = document.querySelectorAll('.slide-in-right');
+                animateOnScroll(slideRightElements, 'show');
+                
+                // Animate zoom-in elements
+                const zoomElements = document.querySelectorAll('.zoom-in');
+                animateOnScroll(zoomElements, 'show');
+                
+                // Animate rotate-in elements
+                const rotateElements = document.querySelectorAll('.rotate-in');
+                animateOnScroll(rotateElements, 'show');
+                
+                // Animate flip-in elements
+                const flipElements = document.querySelectorAll('.flip-in');
+                animateOnScroll(flipElements, 'show');
+            }
+            
+            // Lazy loading images
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.src = image.dataset.src || image.src;
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(image => {
+                    imageObserver.observe(image);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
